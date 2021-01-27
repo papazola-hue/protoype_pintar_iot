@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "378860670396",
+    "firebase_url": "https://monitoringiot-b414d-default-rtdb.firebaseio.com",
+    "project_id": "monitoringiot-b414d",
+    "storage_bucket": "monitoringiot-b414d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378860670396:android:33da15fc19adadd1c36fb9",
+        "android_client_info": {
+          "package_name": "com.example.protoype_pintar_iot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378860670396-bkr3ttm8vn1ode5ooql3sgrmcocjgoo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf8QUSFb6C_C_6N5qjIDDtpSprST5bENQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378860670396-bkr3ttm8vn1ode5ooql3sgrmcocjgoo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
