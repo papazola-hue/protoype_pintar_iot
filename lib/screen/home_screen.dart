@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext cozntext) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
