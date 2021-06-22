@@ -1,13 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:protoype_pintar_iot/Helper/helper_route.dart';
 import 'package:protoype_pintar_iot/screen/detail_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
-import 'package:protoype_pintar_iot/widget/template_card_history.dart';
-
-// import 'package:protoype_pintar_iot/widget/template_card_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -44,6 +40,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
           future: dbRef.once(),
           builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
             try {
+              if(snapshot.connectionState == ConnectionState.waiting){
+                return Container(
+                    child: Center(child: CircularProgressIndicator()));
+              }
+              if(snapshot.hasError){
+                return Container(
+                    child: Center(
+                        child: TemplateTextWidget(
+                          title: "Periksa Koneksi dan Ulangi Aplikasi",
+                        )));
+              }
               if (snapshot.hasData) {
                 lists.clear();
                 Map<dynamic, dynamic> values = snapshot.data.value;
@@ -83,9 +90,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         ),
                       );
                     });
+              }else{
+                return Container(
+                    child: Center(
+                        child: TemplateTextWidget(
+                          title: "Data Kosong",
+                        )));
               }
-              return Container(
-                  child: Center(child: CircularProgressIndicator()));
+
             } catch (e) {
               print(e);
               return Container(

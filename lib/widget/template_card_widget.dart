@@ -4,10 +4,11 @@ import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 class TemplateCardWidget extends StatelessWidget {
   final String title;
   final Function fn;
+  final Widget widget;
   const TemplateCardWidget({
     Key key,
     this.title,
-    this.fn,
+    this.fn, this.widget,
   }) : super(key: key);
 
   @override
@@ -22,10 +23,9 @@ class TemplateCardWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: ListTile(
                   onTap: fn,
-                  title: Center(
-                    child: TemplateTextWidget(
-                      title: title,
-                    ),
+                  leading: widget,
+                  title: TemplateTextWidget(
+                    title: title,
                   )))),
     );
   }
