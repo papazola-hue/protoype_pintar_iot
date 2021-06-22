@@ -43,47 +43,57 @@ class _HistoryScreenState extends State<HistoryScreen> {
       child: FutureBuilder(
           future: dbRef.once(),
           builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
-            if (snapshot.hasData) {
-              lists.clear();
-              Map<dynamic, dynamic> values = snapshot.data.value;
-              values.forEach((key, values) {
-                lists.add(values);
-              });
-              return new ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: lists.length,
-                  padding: EdgeInsets.all(16),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 5,
-                      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: ListTile(
-                        onTap: () {
-                          Nav.push(
-                              context,
-                              DetailPage(
-                                nama: lists[index]["Id"].toString(),
-                                data: lists[index],
-                              ));
-                        },
-                        title: TemplateTextWidget(
-                          title: lists[index]["Id"].toString(),
-                          size: 16,
+            try {
+              if (snapshot.hasData) {
+                lists.clear();
+                Map<dynamic, dynamic> values = snapshot.data.value;
+                values.forEach((key, values) {
+                  lists.add(values);
+                });
+                return new ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: lists.length,
+                    padding: EdgeInsets.all(16),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 5,
+                        margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
-                        subtitle: TemplateTextWidget(
-                          title: "Tanggal : " +
-                              DateFormat.MMMMEEEEd('id').format(
-                                  DateFormat("yyyy-MM-dd").parse(
-                                      lists[index]["Tanggal"].toString())),
+                        child: ListTile(
+                          onTap: () {
+                            Nav.push(
+                                context,
+                                DetailPage(
+                                  nama: lists[index]["Id"].toString(),
+                                  data: lists[index],
+                                ));
+                          },
+                          title: TemplateTextWidget(
+                            title: lists[index]["Id"].toString(),
+                            size: 16,
+                          ),
+                          subtitle: TemplateTextWidget(
+                            title: "Tanggal : " +
+                                DateFormat.MMMMEEEEd('id').format(
+                                    DateFormat("yyyy-MM-dd").parse(
+                                        lists[index]["Tanggal"].toString())),
+                          ),
                         ),
-                      ),
-                    );
-                  });
+                      );
+                    });
+              }
+              return Container(
+                  child: Center(child: CircularProgressIndicator()));
+            } catch (e) {
+              print(e);
+              return Container(
+                  child: Center(
+                      child: TemplateTextWidget(
+                title: "Periksa Koneksi dan Ulangi Aplikasi",
+              )));
             }
-            return Container(child: Center(child: CircularProgressIndicator()));
           }),
     );
   }
