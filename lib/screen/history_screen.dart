@@ -2,6 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:protoype_pintar_iot/Helper/helper_route.dart';
+import 'package:protoype_pintar_iot/screen/detail_screen.dart';
+import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_card_history.dart';
 
 // import 'package:protoype_pintar_iot/widget/template_card_widget.dart';
@@ -35,14 +38,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     // final ref = referenceDatase.reference();
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: TemplateTextWidget(
-          title: 'History',
-        ),
-      ),
-      body: FutureBuilder(
+    return ScaffoldWidget(
+      title: "Halaman History",
+      child: FutureBuilder(
           future: dbRef.once(),
           builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
             if (snapshot.hasData) {
@@ -63,6 +61,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: ListTile(
+                        onTap: () {
+                          Nav.push(
+                              context,
+                              DetailPage(
+                                nama: lists[index]["Id"].toString(),
+                                data: lists[index],
+                              ));
+                        },
                         title: TemplateTextWidget(
                           title: lists[index]["Id"].toString(),
                           size: 16,

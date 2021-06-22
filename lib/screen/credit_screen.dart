@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 
 class CreditScreen extends StatefulWidget {
@@ -10,14 +11,9 @@ class CreditScreen extends StatefulWidget {
 class _CreditScreenState extends State<CreditScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: TemplateTextWidget(
-          title: 'Credit Page',
-        ),
-      ),
-      body: Container(
+    return ScaffoldWidget(
+      title: "Halaman Credit",
+      child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
