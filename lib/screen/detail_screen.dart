@@ -6,6 +6,7 @@ class DetailPage extends StatelessWidget {
   const DetailPage({Key key, this.nama, this.data}) : super(key: key);
   final String nama;
   final Map<dynamic, dynamic> data;
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
@@ -26,27 +27,38 @@ class DetailPage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 10,
-                ),TemplateStackDetailSuratMasuk(
+                ),
+                TemplateStackDetailSuratMasuk(
                   title: 'Kelembapan',
                   sub: data['Kelembapan'].toString(),
                 ),
                 SizedBox(
                   height: 10,
-                ),TemplateStackDetailSuratMasuk(
+                ),
+                TemplateStackDetailSuratMasuk(
                   title: 'Ketinggian',
                   sub: data['Ketinggian'].toString(),
                 ),
                 SizedBox(
                   height: 10,
-                ),TemplateStackDetailSuratMasuk(
+                ),
+                TemplateStackDetailSuratMasuk(
                   title: 'Suhu',
                   sub: data['Suhu'].toString(),
                 ),
                 SizedBox(
                   height: 10,
-                ),TemplateStackDetailSuratMasuk(
+                ),
+                TemplateStackDetailSuratMasuk(
                   title: 'Tanggal',
                   sub: data['Tanggal'],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TemplateStackDetailSuratMasuk(
+                  title: 'Waktu',
+                  sub: data['Waktu'],
                 ),
                 SizedBox(
                   height: 10,
