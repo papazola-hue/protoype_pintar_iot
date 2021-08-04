@@ -4,8 +4,9 @@ import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 class TemplateStackDetailSuratMasuk extends StatelessWidget {
   final String title;
   final String sub;
+  final double angka;
 
-  const TemplateStackDetailSuratMasuk({Key key, this.title, this.sub})
+  const TemplateStackDetailSuratMasuk({Key key, this.title, this.sub, this.angka = 5})
       : super(key: key);
 
   @override
@@ -14,7 +15,7 @@ class TemplateStackDetailSuratMasuk extends StatelessWidget {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
-      childAspectRatio: 5,
+      childAspectRatio: angka,
       crossAxisSpacing: 1,
       children: [
         TemplateTextWidget(

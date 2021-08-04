@@ -3,30 +3,29 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:protoype_pintar_iot/Helper/helper_route.dart';
 import 'package:protoype_pintar_iot/screen/detail_screen.dart';
+import 'package:protoype_pintar_iot/screen/history_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 import 'package:intl/intl.dart';
 
-class HistoryScreen extends StatefulWidget {
+class ItemScreen extends StatefulWidget {
   // static const routeName = '/history';
   final FirebaseApp app;
-  final String id;
 
-  const HistoryScreen({Key key, this.app, this.id}) : super(key: key);
+  const ItemScreen({Key key, this.app}) : super(key: key);
 
   @override
-  _HistoryScreenState createState() => _HistoryScreenState();
+  _ItemScreenState createState() => _ItemScreenState();
 }
 
-class _HistoryScreenState extends State<HistoryScreen> {
+class _ItemScreenState extends State<ItemScreen> {
   // final referenceDatase = FirebaseDatabase.instance;
   final historyController = TextEditingController();
   var date = DateTime.now();
   List<Map<dynamic, dynamic>> lists = [];
-  List<Map<dynamic, dynamic>> listsFilter = [];
 
   // DatabaseReference db;
-  final dbRef = FirebaseDatabase.instance.reference().child("History");
+  final dbRef = FirebaseDatabase.instance.reference().child("Alat");
 
   @override
   void initState() {
@@ -37,7 +36,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     // final ref = referenceDatase.reference();
     return ScaffoldWidget(
-      title: "History ${widget.id}",
+      title: "Group Alat",
       child: FutureBuilder(
           future: dbRef.once(),
           builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
@@ -60,13 +59,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 values.forEach((key, values) {
                   lists.add(values);
                 });
-                listsFilter = lists
-                    .where((element) => element['Id'] == widget.id)
-                    .toList();
-                print(listsFilter.length);
                 return new ListView.builder(
                     shrinkWrap: true,
-                    itemCount: listsFilter.length,
+                    itemCount: lists.length,
                     padding: EdgeInsets.all(16),
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
@@ -77,23 +72,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         ),
                         child: ListTile(
                           onTap: () {
-                            Nav.push(
-                                context,
-                                DetailPage(
-                                  nama: listsFilter[index]["Id"].toString(),
-                                  data: listsFilter[index],
-                                ));
+                            // Nav.push(
+                            //     context,
+                            //     DetailPage(
+                            //       nama: lists[index]["Id"].toString(),
+                            //       data: lists[index],
+                            //     ));
+                            Nav.push(context, HistoryScreen(id: lists[index]["Id"].toString(),));
                           },
                           title: TemplateTextWidget(
-                            title: "Uploaded Date : " +
-                                DateFormat.yMMMMEEEEd('id').format(
-                                    DateFormat("yyyy-MM-dd").parse(
-                                        listsFilter[index]["Tanggal"]
-                                            .toString())),
+                            title:
+                                "Nama Alat : ${lists[index]["Name"].toString()}",
+                            size: 16,
                           ),
                           subtitle: TemplateTextWidget(
-                            title: "Waktu : " +
-                                listsFilter[index]["Waktu"].toString(),
+                            title: "ID Alat : ${lists[index]["Id"].toString()}",
+                            size: 16,
                           ),
                         ),
                       );

@@ -26,6 +26,8 @@ class TemplateCardWidget extends StatelessWidget {
                   leading: widget,
                   title: TemplateTextWidget(
                     title: title,
+                    fontWeight: FontWeight.w600,
+                    size: 16,
                   )))),
     );
   }
