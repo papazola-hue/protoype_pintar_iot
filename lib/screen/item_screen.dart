@@ -1,9 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:protoype_pintar_iot/Helper/helper_route.dart';
 import 'package:protoype_pintar_iot/screen/detail_screen.dart';
+import 'package:protoype_pintar_iot/screen/graphic_cart_screen.dart';
 import 'package:protoype_pintar_iot/screen/history_screen.dart';
+import 'package:protoype_pintar_iot/widget/button_widget_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 import 'package:intl/intl.dart';
@@ -72,13 +76,50 @@ class _ItemScreenState extends State<ItemScreen> {
                         ),
                         child: ListTile(
                           onTap: () {
-                            // Nav.push(
-                            //     context,
-                            //     DetailPage(
-                            //       nama: lists[index]["Id"].toString(),
-                            //       data: lists[index],
-                            //     ));
-                            Nav.push(context, HistoryScreen(id: lists[index]["Id"].toString(),));
+                            Get.defaultDialog(
+                                title: "Action",
+                                middleText: "",
+                                content: FittedBox(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ButtonWidget(
+                                        onPressed: () {
+                                          Nav.push(
+                                              context,
+                                              GraphicCardScreen(
+                                                id: lists[index]["Id"].toString(),
+                                              ));
+                                        },
+                                        child: TemplateTextWidget(
+                                          title: "Graphic Screen",
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      ButtonWidget(
+                                        onPressed: () {
+                                          Nav.push(
+                                              context,
+                                              DetailPage(
+                                                nama:
+                                                    lists[index]["Id"].toString(),
+                                                data: lists[index],
+                                              ));
+                                        },
+                                        child: TemplateTextWidget(
+                                          title: "Detail Screen",
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                titleStyle: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400)));
                           },
                           title: TemplateTextWidget(
                             title:
