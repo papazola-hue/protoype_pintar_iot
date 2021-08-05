@@ -63,7 +63,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 listsFilter = lists
                     .where((element) => element['Id'] == widget.id)
                     .toList();
-                print(listsFilter.length);
+                listsFilter
+                    .sort((a, b) => a['Tanggal'].compareTo(b['Tanggal']));
+
                 return new ListView.builder(
                     shrinkWrap: true,
                     itemCount: listsFilter.length,
@@ -84,12 +86,16 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   data: listsFilter[index],
                                 ));
                           },
+                          // title: TemplateTextWidget(
+                          //   title: "Uploaded Date : " +
+                          //       DateFormat.MMMMEEEEd('id').format(
+                          //           DateFormat("yyyy-MM-dd").parse(
+                          //               listsFilter[index]["Tanggal"]
+                          //                   .toString())),
+                          // ),
                           title: TemplateTextWidget(
                             title: "Uploaded Date : " +
-                                DateFormat.yMMMMEEEEd('id').format(
-                                    DateFormat("yyyy-MM-dd").parse(
-                                        listsFilter[index]["Tanggal"]
-                                            .toString())),
+                                listsFilter[index]["Tanggal"].toString(),
                           ),
                           subtitle: TemplateTextWidget(
                             title: "Waktu : " +

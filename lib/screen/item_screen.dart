@@ -63,6 +63,7 @@ class _ItemScreenState extends State<ItemScreen> {
                 values.forEach((key, values) {
                   lists.add(values);
                 });
+                lists.sort((a, b) => a['no'].compareTo(b['no']));
                 return new ListView.builder(
                     shrinkWrap: true,
                     itemCount: lists.length,
@@ -90,7 +91,8 @@ class _ItemScreenState extends State<ItemScreen> {
                                           Nav.push(
                                               context,
                                               GraphicCardScreen(
-                                                id: lists[index]["Id"].toString(),
+                                                id: lists[index]["Id"]
+                                                    .toString(),
                                               ));
                                         },
                                         child: TemplateTextWidget(
@@ -103,16 +105,22 @@ class _ItemScreenState extends State<ItemScreen> {
                                       ButtonWidget(
                                         onPressed: () {
                                           Get.back();
+                                          // Nav.push(
+                                          //     context,
+                                          //     DetailPage(
+                                          //       nama:
+                                          //           lists[index]["Id"].toString(),
+                                          //       data: lists[index],
+                                          //     ));
                                           Nav.push(
                                               context,
-                                              DetailPage(
-                                                nama:
-                                                    lists[index]["Id"].toString(),
-                                                data: lists[index],
+                                              HistoryScreen(
+                                                id: lists[index]["Id"]
+                                                    .toString(),
                                               ));
                                         },
                                         child: TemplateTextWidget(
-                                          title: "Detail Screen",
+                                          title: "History Screen",
                                         ),
                                       ),
                                     ],
