@@ -5,6 +5,7 @@ import 'package:protoype_pintar_iot/Helper/helper_route.dart';
 import 'package:protoype_pintar_iot/screen/credit_screen.dart';
 import 'package:protoype_pintar_iot/screen/history_screen.dart';
 import 'package:protoype_pintar_iot/screen/item_screen.dart';
+import 'package:protoype_pintar_iot/screen/maps_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_card_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
@@ -84,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 buildBoxDashboard(
                     function: () {
                       Nav.push(context, CreditScreen());
+                      // Nav.push(context, MapsScreen());
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

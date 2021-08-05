@@ -1,5 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:protoype_pintar_iot/Helper/helper_route.dart';
+import 'package:protoype_pintar_iot/screen/maps_screen.dart';
+import 'package:protoype_pintar_iot/widget/button_widget_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/stack_detail_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
@@ -16,6 +19,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   List<Map<dynamic, dynamic>> lists = [];
   Map<dynamic, dynamic> data = {};
+
   // DatabaseReference db;
   final dbRef = FirebaseDatabase.instance.reference().child("History");
 
@@ -93,6 +97,26 @@ class _DetailPageState extends State<DetailPage> {
                         title: 'Waktu',
                         sub: data['Waktu'],
                       ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                          child: ButtonWidget(
+                        onPressed: () {
+                          var lat = double.parse(data['lat']);
+                          var long = double.parse(data['long']);
+
+                          Nav.push(
+                              context,
+                              MapsScreen(
+                                lat: lat,
+                                long: long,
+                              ));
+                        },
+                        child: TemplateTextWidget(
+                          title: "Lihat Lokasi",
+                        ),
+                      )),
                       SizedBox(
                         height: 10,
                       ),

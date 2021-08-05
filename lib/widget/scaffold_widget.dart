@@ -3,16 +3,18 @@ import 'package:get/get.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 
 class ScaffoldWidget extends StatelessWidget {
-  const ScaffoldWidget({Key key, this.child, this.appBar, this.title, this.withiconLeading = true})
+  const ScaffoldWidget({Key key, this.child, this.appBar, this.title, this.withiconLeading = true, this.floating})
       : super(key: key);
   final Widget child;
   final PreferredSizeWidget appBar;
   final String title;
+  final Widget floating;
   final bool withiconLeading;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade50,
+      floatingActionButton: floating,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: withiconLeading ? IconButton(
