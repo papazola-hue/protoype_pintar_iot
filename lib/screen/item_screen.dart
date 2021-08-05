@@ -86,6 +86,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                     children: [
                                       ButtonWidget(
                                         onPressed: () {
+                                          Get.back();
                                           Nav.push(
                                               context,
                                               GraphicCardScreen(
@@ -101,6 +102,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                       ),
                                       ButtonWidget(
                                         onPressed: () {
+                                          Get.back();
                                           Nav.push(
                                               context,
                                               DetailPage(
