@@ -48,6 +48,7 @@ class _DetailPageState extends State<DetailPage> {
               lists.add(values);
             });
             data = lists.firstWhere((element) => element['Id'] == widget.nama);
+            var suhu = int.parse(data['Suhu']);
             return Container(
               padding: EdgeInsets.all(16),
               child: Card(
@@ -67,21 +68,21 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       TemplateStackDetailSuratMasuk(
                         title: 'Kelembapan',
-                        sub: data['Kelembapan'].toString(),
+                        sub: "${data['Kelembapan'].toString()} RH",
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       TemplateStackDetailSuratMasuk(
                         title: 'Ketinggian',
-                        sub: data['Ketinggian'].toString(),
+                        sub: "${data['Ketinggian'].toString()} cm",
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       TemplateStackDetailSuratMasuk(
                         title: 'Suhu',
-                        sub: data['Suhu'].toString(),
+                        sub: "${data['Suhu'].toString()} C",
                       ),
                       SizedBox(
                         height: 10,
@@ -98,25 +99,32 @@ class _DetailPageState extends State<DetailPage> {
                         sub: data['Waktu'],
                       ),
                       SizedBox(
+                        height: 10,
+                      ),
+                      TemplateStackDetailSuratMasuk(
+                        title: 'Status Pintu',
+                        sub: suhu < 20 ? "Terbuka" : "Tertutup",
+                      ),
+                      SizedBox(
                         height: 30,
                       ),
-                      Center(
-                          child: ButtonWidget(
-                        onPressed: () {
-                          var lat = double.parse(data['lat']);
-                          var long = double.parse(data['long']);
-
-                          Nav.push(
-                              context,
-                              MapsScreen(
-                                lat: lat,
-                                long: long,
-                              ));
-                        },
-                        child: TemplateTextWidget(
-                          title: "Lihat Lokasi",
-                        ),
-                      )),
+                      // Center(
+                      //     child: ButtonWidget(
+                      //   onPressed: () {
+                      //     var lat = double.parse(data['lat']);
+                      //     var long = double.parse(data['long']);
+                      //
+                      //     Nav.push(
+                      //         context,
+                      //         MapsScreen(
+                      //           lat: lat,
+                      //           long: long,
+                      //         ));
+                      //   },
+                      //   child: TemplateTextWidget(
+                      //     title: "Lihat Lokasi",
+                      //   ),
+                      // )),
                       SizedBox(
                         height: 10,
                       ),

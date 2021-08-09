@@ -12,17 +12,17 @@ import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 import 'package:intl/intl.dart';
 
-class ItemScreen extends StatefulWidget {
+class ListGraphicItemScreen extends StatefulWidget {
   // static const routeName = '/history';
   final FirebaseApp app;
 
-  const ItemScreen({Key key, this.app}) : super(key: key);
+  const ListGraphicItemScreen({Key key, this.app}) : super(key: key);
 
   @override
-  _ItemScreenState createState() => _ItemScreenState();
+  _ListGraphicItemScreenState createState() => _ListGraphicItemScreenState();
 }
 
-class _ItemScreenState extends State<ItemScreen> {
+class _ListGraphicItemScreenState extends State<ListGraphicItemScreen> {
   // final referenceDatase = FirebaseDatabase.instance;
   final historyController = TextEditingController();
   var date = DateTime.now();
@@ -40,7 +40,7 @@ class _ItemScreenState extends State<ItemScreen> {
   Widget build(BuildContext context) {
     // final ref = referenceDatase.reference();
     return ScaffoldWidget(
-      title: "Group Alat",
+      title: "List Alat",
       child: FutureBuilder(
           future: dbRef.once(),
           builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
@@ -78,7 +78,7 @@ class _ItemScreenState extends State<ItemScreen> {
                         child: ListTile(
                           onTap: () => Nav.push(
                               context,
-                              HistoryScreen(
+                              GraphicCardScreen(
                                 id: lists[index]["Id"].toString(),
                               )),
                           title: TemplateTextWidget(

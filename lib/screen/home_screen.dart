@@ -5,6 +5,7 @@ import 'package:protoype_pintar_iot/Helper/helper_route.dart';
 import 'package:protoype_pintar_iot/screen/credit_screen.dart';
 import 'package:protoype_pintar_iot/screen/history_screen.dart';
 import 'package:protoype_pintar_iot/screen/item_screen.dart';
+import 'package:protoype_pintar_iot/screen/list_graphic_screen.dart';
 import 'package:protoype_pintar_iot/screen/maps_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_card_widget.dart';
@@ -99,6 +100,59 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         TemplateTextWidget(
                           title: 'Credit',
+                          size: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ],
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                buildBoxDashboard(
+                    function: () {
+                      Nav.push(context, ListGraphicItemScreen());
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        buildCircleIcon(
+                            icon: FontAwesomeIcons.chartBar,
+                            warna: Color(0xFFe0f2f1)),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        TemplateTextWidget(
+                          title: 'Graphics',
+                          size: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ],
+                    )),
+                SizedBox(
+                  width: 20,
+                ),
+                buildBoxDashboard(
+                    function: () {
+                      Nav.push(context, MapsScreen());
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        buildCircleIcon(
+                            icon: FontAwesomeIcons.map,
+                            warna: Color(0xffFFF0F5)),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        TemplateTextWidget(
+                          title: 'Lokasi',
                           size: 16,
                           fontWeight: FontWeight.w400,
                         ),
