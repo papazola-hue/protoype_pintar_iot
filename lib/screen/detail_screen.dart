@@ -68,7 +68,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       TemplateStackDetailSuratMasuk(
                         title: 'Kelembapan',
-                        sub: "${data['Kelembapan'].toString()} RH",
+                        sub: "${data['Kelembapan'].toString()} %",
                       ),
                       SizedBox(
                         height: 10,
@@ -103,7 +103,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       TemplateStackDetailSuratMasuk(
                         title: 'Status Pintu',
-                        sub: suhu < 20 ? "Terbuka" : "Tertutup",
+                        sub: suhu > 38 ? "Terbuka" : "Tertutup",
                       ),
                       SizedBox(
                         height: 30,

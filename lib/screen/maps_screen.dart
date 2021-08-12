@@ -23,7 +23,7 @@ class _MapsScreenState extends State<MapsScreen> {
     super.initState();
   }
 
-  final dbRef = FirebaseDatabase.instance.reference().child("History");
+  final dbRef = FirebaseDatabase.instance.reference().child("Alat");
   static const LatLng showLocation = const LatLng(-7.5592034, 110.7487715);
 
   @override
@@ -61,7 +61,7 @@ class _MapsScreenState extends State<MapsScreen> {
                   draggable: false,
                   infoWindow: InfoWindow( //popup info
                     title: e['Id'],
-                    snippet: e['Waktu']
+                    snippet: e['Name']
                   ),
                   onTap: () {
                     print('Marker Tapped');

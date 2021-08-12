@@ -63,8 +63,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 listsFilter = lists
                     .where((element) => element['Id'] == widget.id)
                     .toList();
-                listsFilter
-                    .sort((a, b) => a['Tanggal'].compareTo(b['Tanggal']));
+                listsFilter.sort((a, b) {
+                  int cmp = a['Tanggal'].compareTo(b['Tanggal']);
+                  if (cmp != 0) return cmp;
+                  return b['Waktu'].compareTo(a['Waktu']);
+                });
 
                 return new ListView.builder(
                     shrinkWrap: true,
