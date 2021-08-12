@@ -86,7 +86,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                 context,
                                 DetailPage(
                                   nama: listsFilter[index]["Id"].toString(),
-                                  data: listsFilter[index],
+                                  ketinggian: listsFilter[index]["Ketinggian"]
+                                      .toString(),
+                                  kelembapan: listsFilter[index]["Kelembapan"]
+                                      .toString(),
+                                  suhu: listsFilter[index]["Suhu"].toString(),
+                                  waktu: listsFilter[index]["Waktu"].toString(),
+                                  tanggal:
+                                      listsFilter[index]["Tanggal"].toString(),
                                 ));
                           },
                           // title: TemplateTextWidget(

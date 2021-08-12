@@ -22,8 +22,8 @@ class DataStatistik {
   final String title;
   final String kelembapan;
   final charts.Color color;
-
-  DataStatistik(this.title, this.kelembapan, Color color)
+  final String tanggal;
+  DataStatistik(this.title, this.kelembapan, Color color, this.tanggal)
       : this.color = charts.Color(
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }

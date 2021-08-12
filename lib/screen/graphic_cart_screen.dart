@@ -1,10 +1,13 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:protoype_pintar_iot/screen/home_screen.dart';
 import 'package:protoype_pintar_iot/widget/scaffold_widget.dart';
 import 'package:protoype_pintar_iot/widget/template_text_widget.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter/src/painting/basic_types.dart' as axis;
 
 class GraphicCardScreen extends StatefulWidget {
   const GraphicCardScreen({Key key, this.id}) : super(key: key);
@@ -107,69 +110,89 @@ class _GraphicCardScreenState extends State<GraphicCardScreen> {
                       values.forEach((key, values) {
                         // lists.add(values);
                         if (values['Id'] == widget.id) {
-                          data1.add(DataStatistik(values['Waktu'].toString(),
-                              values["Kelembapan"].toString(), Colors.red));
-                          data2.add(DataStatistik(values['Waktu'].toString(),
-                              values["Ketinggian"].toString(), Colors.blue));
-                          data3.add(DataStatistik(values['Waktu'].toString(),
-                              values["Suhu"].toString(), Colors.green));
+                          data1.add(DataStatistik(
+                              values['Waktu'].toString(),
+                              values["Kelembapan"].toString(),
+                              Colors.red,
+                              values['Tanggal'].toString()));
+                          data2.add(DataStatistik(
+                              values['Waktu'].toString(),
+                              values["Ketinggian"].toString(),
+                              Colors.blue,
+                              values['Tanggal'].toString()));
+                          data3.add(DataStatistik(
+                              values['Waktu'].toString(),
+                              values["Suhu"].toString(),
+                              Colors.green,
+                              values['Tanggal'].toString()));
                         }
                       });
                       var series = [
                         charts.Series(
-                          domainFn: (DataStatistik dataStatistik, _) =>
-                              dataStatistik.title,
-                          measureFn: (DataStatistik dataStatistik, _) =>
-                              int.parse(dataStatistik.kelembapan),
-                          colorFn: (DataStatistik dataStatistik, _) =>
-                              dataStatistik.color,
-                          id: 'Clicks',
-                          data: data1,
-                        ),
+                            domainFn: (DataStatistik dataStatistik, _) =>
+                                dataStatistik.title,
+                            measureFn: (DataStatistik dataStatistik, _) =>
+                                int.parse(dataStatistik.kelembapan),
+                            colorFn: (DataStatistik dataStatistik, _) =>
+                                dataStatistik.color,
+                            id: 'Clicks',
+                            data: data1,
+                            labelAccessorFn: (DataStatistik dataStatistik, _) =>
+                                '${dataStatistik.kelembapan.toString()}'),
                         charts.Series(
-                          domainFn: (DataStatistik dataStatistik, _) =>
-                              dataStatistik.title,
-                          measureFn: (DataStatistik dataStatistik, _) =>
-                              int.parse(dataStatistik.kelembapan),
-                          colorFn: (DataStatistik dataStatistik, _) =>
-                              dataStatistik.color,
-                          id: 'Clicks',
-                          data: data2,
-                        ),
+                            domainFn: (DataStatistik dataStatistik, _) =>
+                                dataStatistik.title,
+                            measureFn: (DataStatistik dataStatistik, _) =>
+                                int.parse(dataStatistik.kelembapan),
+                            colorFn: (DataStatistik dataStatistik, _) =>
+                                dataStatistik.color,
+                            id: 'Clicks',
+                            data: data2,
+                            labelAccessorFn: (DataStatistik dataStatistik, _) =>
+                                '${dataStatistik.kelembapan.toString()}'),
                         charts.Series(
-                          domainFn: (DataStatistik dataStatistik, _) =>
-                              dataStatistik.title,
-                          measureFn: (DataStatistik dataStatistik, _) =>
-                              int.parse(dataStatistik.kelembapan),
-                          colorFn: (DataStatistik dataStatistik, _) =>
-                              dataStatistik.color,
-                          id: 'Clicks',
-                          data: data3,
-                        ),
+                            domainFn: (DataStatistik dataStatistik, _) =>
+                                dataStatistik.title,
+                            measureFn: (DataStatistik dataStatistik, _) =>
+                                int.parse(dataStatistik.kelembapan),
+                            colorFn: (DataStatistik dataStatistik, _) =>
+                                dataStatistik.color,
+                            id: 'Clicks',
+                            data: data3,
+                            labelAccessorFn: (DataStatistik dataStatistik, _) =>
+                                '${dataStatistik.kelembapan.toString()}'),
                       ];
-                      var chart = charts.BarChart(
-                        series,
-                        animate: true,
-                        barGroupingType: charts.BarGroupingType.grouped,
-                        defaultRenderer: charts.BarRendererConfig(
-                          groupingType: charts.BarGroupingType.grouped,
-                          strokeWidthPx: 1.0,
-                        ),
-                        // domainAxis: charts.OrdinalAxisSpec(
-                        //   renderSpec: charts.NoneRenderSpec(),
-                        // ),
+                      var chart = charts.BarChart(series,
+                          animate: false,
+                          // barGroupingType: charts.BarGroupingType.grouped,
+                          // defaultRenderer: charts.BarRendererConfig(
+                          //   groupingType: charts.BarGroupingType.grouped,
+                          //   strokeWidthPx: 1.0,
+                          // ),
+                          barRendererDecorator:
+                              new charts.BarLabelDecorator<String>(),
+                          domainAxis: new charts.OrdinalAxisSpec(),
+                          // selectionModels: [
+                          //   charts.SelectionModelConfig(
+                          //       changedListener: (charts.SelectionModel model) {
+                          //     if (model.hasDatumSelection)
+                          //       print(model.selectedSeries[0].data);
+                          //   })
+                          // ]
                       );
 
-                      var chartWidget = Padding(
-                        padding: EdgeInsets.all(32.0),
-                        child: SizedBox(
-                          height: 200.0,
-                          child: chart,
-                        ),
-                      );
-                      return Container(
-                        child: chartWidget,
-                      );
+                      return SingleChildScrollView(
+                          scrollDirection: axis.Axis.horizontal,
+                          child: Container(
+                              width: 800,
+                              height: 200,
+                              margin: EdgeInsets.only(left: 20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Expanded(child: chart),
+                                ],
+                              )));
                     } else {
                       return Container(
                           child: Center(
