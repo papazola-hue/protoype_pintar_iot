@@ -65,32 +65,6 @@ class _CreditScreenState extends State<CreditScreen> {
               )
             ],
           )),
-          // child: Column(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     TemplateAlign(
-          //       title: 'Universitas Sebelas Maret ',
-          //     ),
-          //     TemplateAlign(
-          //       title: 'Sekolah Vokasi',
-          //     ),
-          //     SizedBox(
-          //       height: 10,
-          //     ),
-          //     TemplateAlign(
-          //       title: 'Al Ariq Surya Sadmoko',
-          //     ),
-          //     TemplateAlign(
-          //       title: 'M3117007',
-          //     ),
-          //     SizedBox(
-          //       height: 10,
-          //     ),
-          //     TemplateAlign(
-          //       title: 'Pembimbing : Nanang Maulana Yoeseph, S.Si., M. Cs',
-          //     ),
-          //   ],
-          // ),
         ),
       ),
     );

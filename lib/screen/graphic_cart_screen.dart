@@ -164,21 +164,9 @@ class _GraphicCardScreenState extends State<GraphicCardScreen> {
                       ];
                       var chart = charts.BarChart(series,
                           animate: false,
-                          // barGroupingType: charts.BarGroupingType.grouped,
-                          // defaultRenderer: charts.BarRendererConfig(
-                          //   groupingType: charts.BarGroupingType.grouped,
-                          //   strokeWidthPx: 1.0,
-                          // ),
                           barRendererDecorator:
                               new charts.BarLabelDecorator<String>(),
                           domainAxis: new charts.OrdinalAxisSpec(),
-                          // selectionModels: [
-                          //   charts.SelectionModelConfig(
-                          //       changedListener: (charts.SelectionModel model) {
-                          //     if (model.hasDatumSelection)
-                          //       print(model.selectedSeries[0].data);
-                          //   })
-                          // ]
                       );
 
                       return SingleChildScrollView(

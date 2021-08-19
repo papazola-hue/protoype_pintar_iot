@@ -23,6 +23,7 @@ class DataStatistik {
   final String kelembapan;
   final charts.Color color;
   final String tanggal;
+
   DataStatistik(this.title, this.kelembapan, Color color, this.tanggal)
       : this.color = charts.Color(
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
@@ -163,21 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-
-            // TemplateCardWidget(
-            //   title: 'History',
-            //   widget: Icon(FontAwesomeIcons.history),
-            //   fn: () {
-            //     Nav.push(context, HistoryScreen());
-            //   },
-            // ),
-            // TemplateCardWidget(
-            //   title: 'Credit',
-            //   widget: Icon(FontAwesomeIcons.userAlt),
-            //   fn: () {
-            //     Nav.push(context, CreditScreen());
-            //   },
-            // ),
           ],
         ),
       ),
